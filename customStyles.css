@@ -1,0 +1,6 @@
+/*  Read about this page here: https://developer.chrome.com/extensions/content_scripts.html */
+.draggableResizable {
+    width      : 100px;
+    height     : 100px;
+    background : gold;
+}

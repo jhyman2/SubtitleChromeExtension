@@ -1,15 +1,17 @@
 {
+  "name": "plugin name",
+  "version": "0",
+  "description": "What do I do as an extension",
+  "background": {"page": "background.html"},
   "manifest_version": 2,
-
-  "name": "Subtle Subtitles",
-  "description": "This extension will overlay subtitles on a streaming movie.",
-  "version": "1.0",
-
   "browser_action": {
-    "default_icon": "icon2.png",
-    "default_popup": "popup.html"
+    "name": "Manipulate DOM",
+    "icons": ["icon2.png"],
+    "default_icon": "icon2.png"
   },
-  "permissions": [
-    "https://secure.flickr.com/"
-  ]
+  "content_scripts": [ {
+    "js": [ "jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "background.js" ],
+    "css": ["customStyles.css"],
+    "matches": [ "http://*/*", "https://*/*"]
+  }]
 }
