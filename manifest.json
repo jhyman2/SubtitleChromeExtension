@@ -1,7 +1,7 @@
 {
-  "name": "plugin name",
+  "name": "Subtle Subtitles",
   "version": "0",
-  "description": "What do I do as an extension",
+  "description": "Subtle Subtitles will display subtitles at the bottom of any movie or TV show.",
   "background": {"page": "background.html"},
   "manifest_version": 2,
   "browser_action": {
