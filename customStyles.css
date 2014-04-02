@@ -2,14 +2,14 @@
 .draggableResizable {
     width      : 800px;
     height     : 50px;
-    background-color : rgba(0, 0, 0, 0.5);
+  /*  background-color : rgba(0, 0, 0, 0.5);*/
 	 text-shadow:
     -1px -1px 0 #000,  
       1px -1px 0 #000,
       -1px 1px 0 #000,
        1px 1px 0 #000;
 	color 	   : white;
-	font-family: "Arial";
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-weight:bold;
 	text-align:center;
 	font-size:300%;
