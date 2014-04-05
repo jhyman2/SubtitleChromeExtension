@@ -1,35 +1,18 @@
-//create an element
-var $element = $('<div id="text" class="draggableResizable" />').text("Click me to start your subtitles");
+// Copyright (c) 2011 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+	
+// Called when the user clicks on the browser action.
+chrome.browserAction.onClicked.addListener(function(tab) {
+	// No tabs or host permissions needed!
+	console.log('Executing on ' + tab.url);
+	chrome.tabs.executeScript({file: "content_script.js"});
+});
 
-//make it "draggable" and "resizable"
-$element.draggable();//.resizable();
+//code: 'document.body.style.backgroundColor="red"'
+//file: "content_script.js"
 
-//append it to the DOM
-$("body").append($element);
-var t = 0;
-//var lines = new Array();
-var lines = new Array();
-var allText;
-var txtFile = new XMLHttpRequest();
-txtFile.open("GET", "http://txt2html.sourceforge.net/sample.txt", true);
-txtFile.onreadystatechange = function()
-{
-  if (txtFile.readyState === 4) {  // document is ready to parse.
-    if (txtFile.status === 200) {  // file is found
-		allText = txtFile.responseText;
-		document.getElementById("text").innterHTML += allText;
-	}
-  }
-}
-txtFile.send(null);
-
-//lines = allText.split("\n");
-//while (t < lines.length){
-//setInterval(function(){addBalls(t)},1000);
-//t = t + 1;
-//}
-//document.getElementById("text").innterHTML = allText;
-
-//function addBalls(index){
-//document.getElementById("text").innerHTML = lines[index];
-//}
+/*chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.type == "status") sendResponse({status: localStorage.status});
+});*/
