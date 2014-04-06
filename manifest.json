@@ -2,15 +2,20 @@
   "name": "Subtle Subtitles",
   "version": "0",
   "description": "Subtle Subtitles will display subtitles at the bottom of any movie or TV show.",
-  "background": {"page": "background.html"},
+  "background": {"scripts": ["background.js"],
+  "persistent": false},
   "manifest_version": 2,
   "browser_action": {
     "name": "Manipulate DOM",
     "icons": ["icon2.png"],
     "default_icon": "icon2.png"
+    //"default_popup": "popup.html"
   },
+  "permissions": [
+  "tabs", "activeTab", "http://*/*", "https://*/*"
+  ],
   "content_scripts": [ {
-    "js": [ "jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "background.js" ],
+    "js": [ "jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js"],//, "content_script.js" ],
     "css": ["customStyles.css"],
     "matches": [ "http://*/*", "https://*/*"]
   }]
