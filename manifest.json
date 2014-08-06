@@ -13,7 +13,8 @@
     },
     "permissions": ["tabs", "activeTab", "http://*/*", "https://*/*"],
     "content_scripts": [{
-        "js": [ "jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js"],//, "content_script.js" ],
+        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js"],//, "content_script.js" ],
         "css": ["customStyles.css"],
-        "matches": [ "http://*/*", "https://*/*"] }]
+        "matches": [ "http://*/*", "https://*/*"] 
+    }]
 }
