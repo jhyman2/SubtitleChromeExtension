@@ -10,6 +10,32 @@ $element.draggable();//.resizable();
 //append it to the DOM
 $("body").append($element);
 var t = 0;
+
+$(document).ready(function(){
+  $("#text").click(function(){
+    document.getElementById("text").innerHTML += "That tickles!";
+  });
+});
+
+var pageExecute = {
+
+    fileContents:"Null",
+    pagePrefix:"Null",
+    slides:"Null",
+
+    init: function () {
+        $.ajax({
+            url: "http://txt2html.sourceforge.net/sample.txt",
+            async: false,
+            success: function (data){
+                pageExecute.fileContents = data;
+            }
+        });
+    }
+};
+
+//alert(pageExecute);
+var t = 0;
 //var lines = new Array();
 var lines = new Array();
 var allText;
