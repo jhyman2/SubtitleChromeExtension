@@ -4,11 +4,8 @@
 	
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
+	
 	// No tabs or host permissions needed!
 	console.log('Executing on ' + tab.url);
 	chrome.tabs.executeScript({file: "content_script.js"});
 });
-
-//code: 'document.body.style.backgroundColor="red"'
-//file: "content_script.js"
-
