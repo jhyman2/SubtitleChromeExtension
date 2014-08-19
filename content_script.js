@@ -1,5 +1,18 @@
+// Reads in text file and console logs it
+var xhr = new XMLHttpRequest();
+xhr.open('GET', chrome.extension.getURL('sample.txt'), true);
+xhr.onreadystatechange = function()
+{
+    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+    {
+        console.log(xhr.responseText);
+        //... The content has been read in xhr.responseText
+    }
+};
+xhr.send();
+
 //create an element
-var $element = $('<div id="text" class="draggableResizable" />').text("Click me to start your subtitles");
+var $element = $('<div id="text" class="draggableResizable" style="z-index: 1000;" />').text("Click me to start your subtitles");
 
 //make it "draggable" and "resizable"
 $element.draggable();

@@ -7,5 +7,12 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	
 	// No tabs or host permissions needed!
 	console.log('Executing on ' + tab.url);
-	chrome.tabs.executeScript({file: "content_script.js"});
+	chrome.tabs.executeScript({
+		file: "content_script.js"
+	});
+
+	// please try how to get this to work, it is very important
+	// chrome.tabs.executeScript({
+    //    code: 'document.body.style.backgroundImage="url(\'chrome-extension://__MSG_@@jobacglfmpcpdimonodhnppjcnilcbcl__/images/sample.jpg\')";'
+    // 	});
 });
