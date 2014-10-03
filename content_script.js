@@ -11,10 +11,12 @@ $.ajax({
     var lines = data.split('\n');
     var numLines = lines.length;
     var i;
-
+    console.log("NUMLINES", numLines);
     // Regular expressions to match times and non-whitespace lines
     var patt = new RegExp("(.*:.*:.*,.*) --> (.*)");
     var patt2 = new RegExp("S+");
+
+    var count = 0;
 
     // loop through each line 
     // if line has a time in it, grab it and then grab each line after until a blank line is reached
@@ -22,6 +24,7 @@ $.ajax({
 
         // if line has times on it
         if (patt.test(lines[i])){
+            count++;
             var twoTimes = lines[i].split(" --> ");
             var currentSubText = "";
             i = i + 1;
@@ -39,8 +42,8 @@ $.ajax({
                     endTime: twoTimes[1],
                     text: currentSubText
                 };
-                finalSubs.push(sub);
             }
+            finalSubs.push(sub);
         }
     }
     // log the subtitles
