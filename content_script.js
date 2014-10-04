@@ -10,7 +10,7 @@ $.ajax({
     var lines = data.split('\n');
     var numLines = lines.length;
     var i;
-    
+
     // Regular expressions to match times and non-whitespace lines
     var patt = new RegExp("(.*:.*:.*,.*) --> (.*)[ \t\n]*");
     var patt2 = new RegExp(".+");
@@ -37,10 +37,11 @@ $.ajax({
 
             // if text was read, then create a new subtitle object and add it to the finalSubs array
             if (currentSubText){
+                // replacing commas with colons to make the time format uniform (ex: 00:00:20,444 becomes 00:00:20:444)
                 var sub = {
-                    startTime: twoTimes[0],
-                    endTime: twoTimes[1],
-                    text: currentSubText
+                    startTime: twoTimes[0].replace(",",":"),
+                    endTime: twoTimes[1].replace(",", ":"),
+                    subText: currentSubText
                 };
                 finalSubs.push(sub);
             }
@@ -61,18 +62,22 @@ $element.draggable();
 $("body").append($element);
 // var t = 0;
 
-// $(document).ready(function(){
-//   $("#text").click(function(){
-//     var timer = 0.0;
-//     var count = 0;
-//     document.getElementById("text").innerHTML = "Subtitles starting...";
+$(document).ready(function(){
+  $("#text").click(function(){
+    var timer = 0.0;
+    var count = 0;
+    document.getElementById("text").innerHTML = "Subtitles starting...";
 
-//     while (timer < finalSubs[finalSubs.length - 1]){
-//         timer = finalSubs[count++].startTime;
-//         window.setTimeout("javascript function", timer);
-//     }
-//   });
-// });
+    while (timer < finalSubs[finalSubs.length - 1]){
+        timer = finalSubs[count++].startTime;
+
+        window.setTimeout(
+            document.getElementById("text".innterHTML = finalSubs[count].subText), 
+            finalSubs[count].startTime
+        );
+    }
+  });
+});
 
 // var pageExecute = {
 //     fileContents:"Null",
