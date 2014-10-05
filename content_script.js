@@ -1,7 +1,7 @@
 // Reads in text file and console logs it
 var finalSubs = [];
 $.ajax({
-  url: "http://tutorrow.com/subtle_subtitles/example.srt",
+  url: "http://tutorrow.com/subtle_subtitles/example2.srt",
   dataType: "html",
 
   // called when remote file is grabbed
@@ -39,8 +39,8 @@ $.ajax({
             if (currentSubText){
                 // replacing commas with colons to make the time format uniform (ex: 00:00:20,444 becomes 00:00:20:444)
                 var sub = {
-                    startTime: twoTimes[0].replace(",",":"),
-                    endTime: twoTimes[1].replace(",", ":"),
+                    startTime: convertToMillis(twoTimes[0].replace(",",":")),
+                    endTime: convertToMillis(twoTimes[1].replace(",", ":")),
                     subText: currentSubText
                 };
                 finalSubs.push(sub);
@@ -63,21 +63,50 @@ $("body").append($element);
 // var t = 0;
 
 $(document).ready(function(){
-  $("#text").click(function(){
-    var timer = 0.0;
-    var count = 0;
-    document.getElementById("text").innerHTML = "Subtitles starting...";
+    $("#text").click(function(){
 
-    while (timer < finalSubs[finalSubs.length - 1]){
-        timer = finalSubs[count++].startTime;
+        // Set vars to 0 initially
+        var timer = 0.0;
+        var count = 0;
+        var elapsedTime = 0;
+        
+        // Set subtitle text to blank before first one is called
+        document.getElementById("text").innerHTML = "waiting for first subtitle";
 
-        window.setTimeout(
-            document.getElementById("text".innterHTML = finalSubs[count].subText), 
-            finalSubs[count].startTime
-        );
-    }
-  });
-});
+        // while last subtitle has not been reached
+        while (timer < finalSubs[finalSubs.length - 1].endTime) {
+            // set timer to next subtitle
+            timer = finalSubs[count].startTime;
+
+            // after next subtitle time is reached, set the text to it
+            window.setTimeout(document.getElementById("text".innerHTML = finalSubs[count].subText), finalSubs[count].startTime - elapsedTime);
+            
+            // add to elapsed time
+            elapsedTime += finalSubs[count].startTime;
+            
+            // after text has been set, clear it when endTime is reached
+            window.setTimeout(document.getElementById("text".innterHTML = ""), finalSubs[count].endTime - elapsedTime);
+            
+            // add to elapsed time
+            elapsedTime += finalSubs[count].endTime;
+            
+            count++;
+        }
+    });
+}); 
+
+function firstDelay(count, timer){
+
+}
+
+function convertToMillis(unFormatted) {
+    var times = unFormatted.split(":");
+    var total = parseInt(times[3]);
+    total += parseInt(times[2]) * 1000;
+    total += parseInt(times[1]) * 60000;
+    total += parseInt(times[0]) * 3600000;
+    return total;
+}
 
 // var pageExecute = {
 //     fileContents:"Null",

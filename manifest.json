@@ -26,6 +26,6 @@
     "web_accessible_resources": [
         "sample.txt",
         "images/sample.jpg",
-        "http://tutorrow.com/subtle_subtitles/example.srt"
+        "http://tutorrow.com/subtle_subtitles/example2.srt"
     ]
 }
