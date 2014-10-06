@@ -58,13 +58,13 @@ $("body").append($element);
 // var t = 0;
 
 
-function showSubtitle(index, elapsedTime) {
+function showSubtitle(index) {
     currentSub = finalSubs[index];
     document.getElementById("text".innerHTML = currentSub.subText);
     window.setTimeout(eraseThisSubtitle(index), currentSub.endTime - currentSub.startTime);
 }
 
-function eraseThisSubtitle(index, elapsedTime) {
+function eraseThisSubtitle(index) {
     currentSub = finalSubs[index];
     nextSub = finalSubs[index + 1];
     document.getElementById("text".innterHTML = "");
@@ -76,33 +76,9 @@ function eraseThisSubtitle(index, elapsedTime) {
 
 $(document).ready(function(){
     $("#text").click(function(){
-
-        // Set vars to 0 initially
-        var timer = 0.0;finalSubs[count]
-        var count = 0;
-        var elapsedTime = 0;
-
         // Set subtitle text to blank before first one is called
         document.getElementById("text").innerHTML = "waiting for first subtitle";
-
-        // while last subtitle has not been reached
-        while (timer < finalSubs[finalSubs.length - 1].endTime) {
-            // set timer to next subtitle
-            timer = finalSubs[count].startTime;
-
-            // after next subtitle time is reached, set the text to it
-            window.setTimeout(document.getElementById("text".innerHTML = finalSubs[count].subText), finalSubs[count].startTime - elapsedTime);
-
-            // add to elapsed time
-            elapsedTime += finalSubs[count].startTime;
-
-            // after text has been set, clear it when endTime is reached
-            window.setTimeout(document.getElementById("text".innterHTML = ""), finalSubs[count].endTime - elapsedTime);
-
-            // add to elapsed time
-            elapsedTime += finalSubs[count].endTime;
-
-            count++;
+        window.setTimeout(showSubtitle(0), finalSubs[0].startTime);
         }
     });
 });
