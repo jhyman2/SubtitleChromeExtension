@@ -24,7 +24,7 @@ $.ajax({
 
             // read subtitle text until a blank line is reached
             j = i;
-            while (lines[j] && lines[j].trim() != "") {
+            while (lines[j] && lines[j].trim() !== "") {
                 j++;
             }
 
@@ -55,8 +55,6 @@ $element.draggable();
 
 //append it to the DOM
 $("body").append($element);
-// var t = 0;
-
 
 function showSubtitle(index) {
     currentSub = finalSubs[index];
@@ -81,11 +79,6 @@ $(document).ready(function(){
         window.setTimeout(function(){showSubtitle(0);}, finalSubs[0].startTime);
     });
 });
-
-function firstDelay(count, timer){
-
-}
-
 
 function convertTimecodeToMilliseconds(timecode) {
   timecode = timecode.split(':');
