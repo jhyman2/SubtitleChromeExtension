@@ -16,7 +16,6 @@ $.ajax({
 
     // loop through each line
     // if line has a time in it, grab it and then grab each line after until a blank line is reached
-    debugger;
     for (i = 0; i < numLines; i++){
         // if line has times on it
         if (patt.test(lines[i])){
@@ -25,7 +24,7 @@ $.ajax({
 
             // read subtitle text until a blank line is reached
             j = i;
-            while (lines[j] != "") {
+            while (lines[j] && lines[j].trim() != "") {
                 j++;
             }
 
