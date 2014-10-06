@@ -28,7 +28,7 @@ $.ajax({
                 j++;
             }
 
-            currentSubText = lines.slice(i,j).join("\n");
+            currentSubText = lines.slice(i,j).join("<br>");
 
             // if text was read, then create a new subtitle object and add it to the finalSubs array
             if (currentSubText){
@@ -60,16 +60,16 @@ $("body").append($element);
 
 function showSubtitle(index) {
     currentSub = finalSubs[index];
-    document.getElementById("text".innerHTML = currentSub.subText);
-    window.setTimeout(eraseThisSubtitle(index), currentSub.endTime - currentSub.startTime);
+    document.getElementById("text").innerHTML = currentSub.subText;
+    window.setTimeout(function(){eraseThisSubtitle(index);}, currentSub.endTime - currentSub.startTime);
 }
 
 function eraseThisSubtitle(index) {
-    currentSub = finalSubs[index];
-    nextSub = finalSubs[index + 1];
-    document.getElementById("text".innterHTML = "");
-    if index < finalSubs.length {
-        window.setTimeout(showSubtitle(index + 1), nextSub.startTime - currentSub.endTime);
+    document.getElementById("text").innterHTML = "";
+    if (index + 1 < finalSubs.length) {
+        currentSub = finalSubs[index];
+        nextSub = finalSubs[index + 1];
+        window.setTimeout(function(){showSubtitle(index + 1);}, nextSub.startTime - currentSub.endTime);
     }
 }
 
@@ -78,8 +78,7 @@ $(document).ready(function(){
     $("#text").click(function(){
         // Set subtitle text to blank before first one is called
         document.getElementById("text").innerHTML = "waiting for first subtitle";
-        window.setTimeout(showSubtitle(0), finalSubs[0].startTime);
-        }
+        window.setTimeout(function(){showSubtitle(0);}, finalSubs[0].startTime);
     });
 });
 
@@ -89,11 +88,11 @@ function firstDelay(count, timer){
 
 
 function convertTimecodeToMilliseconds(timecode) {
-  var timecode = timecode.split(':');
+  timecode = timecode.split(':');
   var hours = timecode[0];
   var minutes = timecode[1];
   var seconds = timecode[2];
-  var milliseconds = timecode[3];
+  var milliseconds = parseInt(timecode[3]);
 
   return milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000);
 }
