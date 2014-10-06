@@ -9,7 +9,7 @@ $.ajax({
     // lines is an array of every line in the subtitle file
     var lines = data.split('\n');
     var numLines = lines.length;
-    var i, j;
+    var i, j, sub, twoTimes;
 
     // Regular expressions to match times
     var patt = new RegExp("(.*:.*:.*,.*) --> (.*)[ \t\n]*");
@@ -19,7 +19,7 @@ $.ajax({
     for (i = 0; i < numLines; i++){
         // if line has times on it
         if (patt.test(lines[i])){
-            var twoTimes = lines[i].split(" --> ");
+            twoTimes = lines[i].split(" --> ");
             i++;
 
             // read subtitle text until a blank line is reached
@@ -28,12 +28,12 @@ $.ajax({
                 j++;
             }
 
-            currentSubText = lines.slice(i,j).join('\n');
+            currentSubText = lines.slice(i,j).join("\n");
 
             // if text was read, then create a new subtitle object and add it to the finalSubs array
             if (currentSubText){
                 // replacing commas with colons to make the time format uniform (ex: 00:00:20,444 becomes 00:00:20:444)
-                var sub = {
+                sub = {
                     startTime: convertTimecodeToMilliseconds(twoTimes[0].replace(",",":")),
                     endTime: convertTimecodeToMilliseconds(twoTimes[1].replace(",", ":")),
                     subText: currentSubText
