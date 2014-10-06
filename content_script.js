@@ -9,38 +9,34 @@ $.ajax({
     // lines is an array of every line in the subtitle file
     var lines = data.split('\n');
     var numLines = lines.length;
-    var i;
+    var i, j;
 
-    // Regular expressions to match times and non-whitespace lines
+    // Regular expressions to match times
     var patt = new RegExp("(.*:.*:.*,.*) --> (.*)[ \t\n]*");
-    var patt2 = new RegExp(".+");
 
-    var count = 0;
-
-    // loop through each line 
+    // loop through each line
     // if line has a time in it, grab it and then grab each line after until a blank line is reached
+    debugger;
     for (i = 0; i < numLines; i++){
         // if line has times on it
         if (patt.test(lines[i])){
-            count++;
             var twoTimes = lines[i].split(" --> ");
-            var currentSubText = "";
-            i = i + 1;
+            i++;
+
             // read subtitle text until a blank line is reached
-            while(patt2.test(lines[i]) && lines[i]){
-                if (currentSubText != ""){
-                    currentSubText = currentSubText.concat("\n");
-                }
-                currentSubText = currentSubText.concat(lines[i]);
-                i = i +1;
+            j = i;
+            while (lines[j] != "") {
+                j++;
             }
+
+            currentSubText = lines.slice(i,j).join('\n');
 
             // if text was read, then create a new subtitle object and add it to the finalSubs array
             if (currentSubText){
                 // replacing commas with colons to make the time format uniform (ex: 00:00:20,444 becomes 00:00:20:444)
                 var sub = {
-                    startTime: convertToMillis(twoTimes[0].replace(",",":")),
-                    endTime: convertToMillis(twoTimes[1].replace(",", ":")),
+                    startTime: convertTimecodeToMilliseconds(twoTimes[0].replace(",",":")),
+                    endTime: convertTimecodeToMilliseconds(twoTimes[1].replace(",", ":")),
                     subText: currentSubText
                 };
                 finalSubs.push(sub);
@@ -69,7 +65,7 @@ $(document).ready(function(){
         var timer = 0.0;
         var count = 0;
         var elapsedTime = 0;
-        
+
         // Set subtitle text to blank before first one is called
         document.getElementById("text").innerHTML = "waiting for first subtitle";
 
@@ -80,32 +76,34 @@ $(document).ready(function(){
 
             // after next subtitle time is reached, set the text to it
             window.setTimeout(document.getElementById("text".innerHTML = finalSubs[count].subText), finalSubs[count].startTime - elapsedTime);
-            
+
             // add to elapsed time
             elapsedTime += finalSubs[count].startTime;
-            
+
             // after text has been set, clear it when endTime is reached
             window.setTimeout(document.getElementById("text".innterHTML = ""), finalSubs[count].endTime - elapsedTime);
-            
+
             // add to elapsed time
             elapsedTime += finalSubs[count].endTime;
-            
+
             count++;
         }
     });
-}); 
+});
 
 function firstDelay(count, timer){
 
 }
 
-function convertToMillis(unFormatted) {
-    var times = unFormatted.split(":");
-    var total = parseInt(times[3]);
-    total += parseInt(times[2]) * 1000;
-    total += parseInt(times[1]) * 60000;
-    total += parseInt(times[0]) * 3600000;
-    return total;
+
+function convertTimecodeToMilliseconds(timecode) {
+  var timecode = timecode.split(':');
+  var hours = timecode[0];
+  var minutes = timecode[1];
+  var seconds = timecode[2];
+  var milliseconds = timecode[3];
+
+  return milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000);
 }
 
 // var pageExecute = {
