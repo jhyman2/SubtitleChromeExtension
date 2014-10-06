@@ -58,16 +58,22 @@ $("body").append($element);
 
 function showSubtitle(index) {
     currentSub = finalSubs[index];
-    document.getElementById("text").innerHTML = currentSub.subText;
+    document.getElementById("text").innerHTML = (document.getElementById("text").innerHTML + "<br>" + finalSubs[index].subText).trim();
     window.setTimeout(function(){eraseThisSubtitle(index);}, currentSub.endTime - currentSub.startTime);
+    // Spawn the next one if it starts before we end.
+    if (index + 1 < finalSubs.length) {
+        nextSub = finalSubs[index + 1];
+        window.setTimeout(function(){showSubtitle(index + 1);}, nextSub.startTime - currentSub.startTime);
+    }
 }
 
 function eraseThisSubtitle(index) {
-    document.getElementById("text").innerHTML = "";
+    // TODO: make this work.....
+    var leadingNewLInes = new RegExp("^(<br>)+");
+    document.getElementById("text").innerHTML = document.getElementById("text").innerHTML.replace(finalSubs[index].subText.replace(/<br>/g, "\n").trim(), '').trim().replace(leadingNewLInes, "");
     if (index + 1 < finalSubs.length) {
-        currentSub = finalSubs[index];
-        nextSub = finalSubs[index + 1];
-        window.setTimeout(function(){showSubtitle(index + 1);}, nextSub.startTime - currentSub.endTime);
+    } else {
+        console.timeEnd("subtitles");
     }
 }
 
@@ -76,7 +82,7 @@ $(document).ready(function(){
     $("#text").click(function(){
         // Set subtitle text to blank before first one is called
         document.getElementById("text").innerHTML = "waiting for first subtitle";
-        window.setTimeout(function(){showSubtitle(0);}, finalSubs[0].startTime);
+        window.setTimeout(function(){document.getElementById("text").innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
     });
 });
 
