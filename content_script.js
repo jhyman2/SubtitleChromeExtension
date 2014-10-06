@@ -61,14 +61,16 @@ $("body").append($element);
 function showSubtitle(index, elapsedTime) {
     currentSub = finalSubs[index];
     document.getElementById("text".innerHTML = currentSub.subText);
-    window.setTimeout(eraseThisSubtitle(index), currentSub.startTime - currentSub.endTime);
+    window.setTimeout(eraseThisSubtitle(index), currentSub.endTime - currentSub.startTime);
 }
 
 function eraseThisSubtitle(index, elapsedTime) {
     currentSub = finalSubs[index];
     nextSub = finalSubs[index + 1];
     document.getElementById("text".innterHTML = "");
-    window.setTimeout(showSubtitle(index + 1), nextSub.startTime - currentSub.endTime);
+    if index < finalSubs.length {
+        window.setTimeout(showSubtitle(index + 1), nextSub.startTime - currentSub.endTime);
+    }
 }
 
 
