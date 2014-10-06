@@ -56,10 +56,12 @@ $element.draggable();
 //append it to the DOM
 $("body").append($element);
 
+var subsShowing = [];
+
 function showSubtitle(index) {
-    var leadingNewLInes = new RegExp("^(<br>)+");
+    subsShowing.push(index);
     currentSub = finalSubs[index];
-    document.getElementById("text").innerHTML = (document.getElementById("text").innerHTML + "<br>" + finalSubs[index].subText).trim().replace(leadingNewLInes, "");
+    document.getElementById("text").innerHTML = buildSubtitle();
     window.setTimeout(function(){eraseThisSubtitle(index);}, currentSub.endTime - currentSub.startTime);
     // Spawn the next one if it starts before we end.
     if (index + 1 < finalSubs.length) {
@@ -69,13 +71,21 @@ function showSubtitle(index) {
 }
 
 function eraseThisSubtitle(index) {
-    // TODO: make this work.....
-    var leadingNewLInes = new RegExp("^(<br>)+");
-    document.getElementById("text").innerHTML = document.getElementById("text").innerHTML.replace(finalSubs[index].subText.replace(/<br>/g, "\n").trim(), '').trim().replace(leadingNewLInes, "");
+    subsShowing.splice(subsShowing.indexOf(index), 1);
+    document.getElementById("text").innerHTML = buildSubtitle();
     if (index + 1 < finalSubs.length) {
     } else {
         console.timeEnd("subtitles");
     }
+}
+
+function buildSubtitle() {
+    var i;
+    var subtitle = "";
+    for (i  = 0; i < subsShowing.length; i++) {
+        subtitle += (i > 0 && "<br>" || "") + finalSubs[subsShowing[i]].subText;;
+    }
+    return subtitle;
 }
 
 
@@ -83,6 +93,7 @@ $(document).ready(function(){
     $("#text").click(function(){
         // Set subtitle text to blank before first one is called
         document.getElementById("text").innerHTML = "waiting for first subtitle";
+        console.time("subtitles");
         window.setTimeout(function(){document.getElementById("text").innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
     });
 });
