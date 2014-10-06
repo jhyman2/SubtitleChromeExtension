@@ -63,7 +63,7 @@ function showSubtitle(index) {
 }
 
 function eraseThisSubtitle(index) {
-    document.getElementById("text").innterHTML = "";
+    document.getElementById("text").innerHTML = "";
     if (index + 1 < finalSubs.length) {
         currentSub = finalSubs[index];
         nextSub = finalSubs[index + 1];
