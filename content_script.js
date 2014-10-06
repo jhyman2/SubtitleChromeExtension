@@ -57,8 +57,9 @@ $element.draggable();
 $("body").append($element);
 
 function showSubtitle(index) {
+    var leadingNewLInes = new RegExp("^(<br>)+");
     currentSub = finalSubs[index];
-    document.getElementById("text").innerHTML = (document.getElementById("text").innerHTML + "<br>" + finalSubs[index].subText).trim();
+    document.getElementById("text").innerHTML = (document.getElementById("text").innerHTML + "<br>" + finalSubs[index].subText).trim().replace(leadingNewLInes, "");
     window.setTimeout(function(){eraseThisSubtitle(index);}, currentSub.endTime - currentSub.startTime);
     // Spawn the next one if it starts before we end.
     if (index + 1 < finalSubs.length) {
