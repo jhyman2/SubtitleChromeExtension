@@ -57,11 +57,26 @@ $element.draggable();
 $("body").append($element);
 // var t = 0;
 
+
+function showSubtitle(index, elapsedTime) {
+    currentSub = finalSubs[index];
+    document.getElementById("text".innerHTML = currentSub.subText);
+    window.setTimeout(eraseThisSubtitle(index), currentSub.startTime - currentSub.endTime);
+}
+
+function eraseThisSubtitle(index, elapsedTime) {
+    currentSub = finalSubs[index];
+    nextSub = finalSubs[index + 1];
+    document.getElementById("text".innterHTML = "");
+    window.setTimeout(showSubtitle(index + 1), nextSub.startTime - currentSub.endTime);
+}
+
+
 $(document).ready(function(){
     $("#text").click(function(){
 
         // Set vars to 0 initially
-        var timer = 0.0;
+        var timer = 0.0;finalSubs[count]
         var count = 0;
         var elapsedTime = 0;
 
