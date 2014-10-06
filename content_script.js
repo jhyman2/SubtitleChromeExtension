@@ -73,10 +73,9 @@ function showSubtitle(index) {
 function eraseThisSubtitle(index) {
     subsShowing.splice(subsShowing.indexOf(index), 1);
     document.getElementById("text").innerHTML = buildSubtitle();
-    if (index + 1 < finalSubs.length) {
-    } else {
-        console.timeEnd("subtitles");
-    }
+    //if (index + 1 > finalSubs.length) {
+    //    console.timeEnd("subtitles");
+    //}
 }
 
 function buildSubtitle() {
@@ -93,7 +92,7 @@ $(document).ready(function(){
     $("#text").click(function(){
         // Set subtitle text to blank before first one is called
         document.getElementById("text").innerHTML = "waiting for first subtitle";
-        console.time("subtitles");
+        //console.time("subtitles");
         window.setTimeout(function(){document.getElementById("text").innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
     });
 });
