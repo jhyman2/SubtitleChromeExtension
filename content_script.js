@@ -49,7 +49,7 @@ $.ajax({
 });
 
 //create an element
-var $element = $('<div id="text" class="draggableResizable" style="z-index: 10000; position:absolute; float:left; top:150px; left:150px;" />').text("Click me to start your subtitles");
+var $element = $('<div id="text" class="draggableResizable" style="z-index: 2147483647; position:absolute; float:left; top:150px; left:150px;" />').text("Click me to start your subtitles");
 
 //make it "draggable" and "resizable"
 $element.draggable();
