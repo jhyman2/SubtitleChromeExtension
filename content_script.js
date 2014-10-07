@@ -74,9 +74,6 @@ function showSubtitle(index) {
 function eraseThisSubtitle(index) {
     subsShowing.splice(subsShowing.indexOf(index), 1);
     document.getElementById("text").innerHTML = buildSubtitle();
-    //if (index + 1 > finalSubs.length) {
-    //    console.timeEnd("subtitles");
-    //}
 }
 
 function buildSubtitle() {
@@ -94,6 +91,7 @@ $(document).ready(function(){
 
         // checks to make sure subtitles havent started
         if (!beenClicked){
+
             beenClicked = true;
             // Set subtitle text to blank before first one is called
             document.getElementById("text").innerHTML = "waiting for first subtitle";
@@ -112,21 +110,3 @@ function convertTimecodeToMilliseconds(timecode) {
 
   return milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000);
 }
-
-// var pageExecute = {
-//     fileContents:"Null",
-//     pagePrefix:"Null",
-//     slides:"Null",
-
-//     init: function () {
-//         $.ajax({
-//             url: "http://txt2html.sourceforge.net/sample.txt",
-//             async: false,
-//             success: function (data){
-//                 pageExecute.fileContents = data;
-//             }
-//         });
-//     }
-// };
-
-//console.log(fullText);
