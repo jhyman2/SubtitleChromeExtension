@@ -11,8 +11,4 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		file: "content_script.js"
 	});
 
-	// this now works
-	// chrome.tabs.executeScript({
- //        code: 'document.body.style.backgroundImage="url(\"+chrome.extension.getURL(\"images/sample.jpg\")+\")";'
- //    });
 });
