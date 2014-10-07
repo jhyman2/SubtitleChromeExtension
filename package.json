@@ -6,5 +6,7 @@
     "grunt-contrib-watch": "0.5.3",
     "grunt-contrib-sass": "0.6.0",
     "grunt-contrib-copy": "0.5.0"
-  }
+  },
+  "main": "Gruntfile.js",
+  "author": "Jamison Hyman, Seth Mosgin, Joseph Khan"
 }
