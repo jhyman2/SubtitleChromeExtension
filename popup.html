@@ -1,30 +1,22 @@
 <!doctype html>
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        min-width: 357px;
-        overflow-x: hidden;
-      }
-
-      img {
-        margin: 5px;
-        border: 2px solid black;
-        vertical-align: middle;
-        width: 75px;
-        height: 75px;
-      }
-    </style>
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
-     -->
+    <title>Subtle Subtitles Popup</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <script src="popup.js"></script>
+    <script src="content_script.js"</script>
+    <script src="js/bootstrap.js"></script>
   </head>
-  <body>
+  <body style="min-width: 800px;">
+  <div>
+        <ul class="nav nav-pills nav-stacked">
+          <li id="start-subtitles"><a href="javascript:void(0)">Start Subtitles</a></li>
+          <li><a href="javascript:void(0)">Upload Subtitles</a></li>
+          <li><a href="javascript:void(0)">Speed Up</a></li>
+          <li><a href="javascript:void(0)">Slow Down</a></li>
+          <li><a href="javascript:void(0)">Font Settings</a></li>
+        </ul>
+    </div>
   </body>
 </html>
 

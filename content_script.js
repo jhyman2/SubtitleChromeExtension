@@ -1,3 +1,6 @@
+
+debugger;
+$('#start-subtitles').click(function(){
 // Reads in text file and console logs it
 var finalSubs = [];
 var beenClicked = false;
@@ -109,4 +112,5 @@ function convertTimecodeToMilliseconds(timecode) {
   var milliseconds = parseInt(timecode[3]);
 
   return milliseconds + (seconds * 1000) + (minutes * 60 * 1000) + (hours * 60 * 60 * 1000);
+}
 }

@@ -10,7 +10,8 @@
     "browser_action": {
         "name": "Manipulate DOM",
         "icons": ["icon2.png"],
-        "default_icon": "icon2.png"
+        "default_icon": "icon2.png",
+        "default_popup": "popup.html"
     },
     "permissions": [
         "tabs", 
@@ -19,13 +20,14 @@
         "https://*/*"
     ],
     "content_scripts": [{
-        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js"],
-        "css": ["customStyles.css"],
+        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "js/bootstrap.js"],
+        "css": ["customStyles.css", "css/bootstrap.css"],
         "matches": [ "http://*/*", "https://*/*"] 
     }],
     "web_accessible_resources": [
         "sample.txt",
         "images/sample.jpg",
-        "http://tutorrow.com/subtle_subtitles/example2.srt"
+        "http://tutorrow.com/subtle_subtitles/example2.srt",
+        "js/bootstrap.js"
     ]
 }
