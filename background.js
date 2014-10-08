@@ -10,7 +10,3 @@ chrome.tabs.onUpdated.addListener(function(activeTab) {
         popup: 'popup.html'   // Open this html file within the popup.
    });
 });
-
-chrome.browserAction.onClicked.addListener(function(activeTab) {
-    chrome.tabs.sendMessage(activeTab.id,{clicked:1});
-});
