@@ -27,6 +27,7 @@
     "web_accessible_resources": [
         "static/js/sample.txt",
         "static/images/sample.jpg",
+        "static/js/jquery.min.map",
         "http://tutorrow.com/subtle_subtitles/example2.srt"
     ]
 }
