@@ -20,7 +20,7 @@
         "https://*/*"
     ],
     "content_scripts": [{
-        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "js/bootstrap.js"],
+        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "js/bootstrap.js", "content_script.js"],
         "css": ["customStyles.css", "css/bootstrap.css"],
         "matches": [ "http://*/*", "https://*/*"] 
     }],
