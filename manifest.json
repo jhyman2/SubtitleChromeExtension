@@ -10,8 +10,7 @@
     "browser_action": {
         "name": "Manipulate DOM",
         "icons": ["icon2.png"],
-        "default_icon": "icon2.png",
-        "default_popup": "popup.html"
+        "default_icon": "icon2.png"
     },
     "permissions": [
         "tabs", 
@@ -20,8 +19,8 @@
         "https://*/*"
     ],
     "content_scripts": [{
-        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "js/bootstrap.js", "content_script.js"],
-        "css": ["customStyles.css", "css/bootstrap.css"],
+        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "js/bootstrap.js"],
+        "css": ["customStyles.css"],
         "matches": [ "http://*/*", "https://*/*"] 
     }],
     "web_accessible_resources": [

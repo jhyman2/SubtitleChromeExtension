@@ -1,14 +1,16 @@
 // Copyright (c) 2011 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-	
-// Called when the user clicks on the browser action.
-chrome.browserAction.onClicked.addListener(function(tab) {
-	
-	// No tabs or host permissions needed!
-	console.log('Executing on ' + tab.url);
-	chrome.tabs.executeScript({
-		file: "content_script.js"
-	});
 
+// Called whenUpdated creates a new tab.
+chrome.tabs.onUpdated.addListener(function(activeTab) {
+
+    chrome.browserAction.setPopup({
+        tabId: activeTab.id,          // Set the new popup for this tab.
+        popup: 'popup.html'   // Open this html file within the popup.
+   });
+});
+
+chrome.browserAction.onClicked.addListener(function(activeTab) {
+    chrome.tabs.sendMessage(activeTab.id,{clicked:1});
 });
