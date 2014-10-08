@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Called whenUpdated creates a new tab.
 chrome.tabs.onUpdated.addListener(function(activeTab) {
 
     chrome.browserAction.setPopup({
