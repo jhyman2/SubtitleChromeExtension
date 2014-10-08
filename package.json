@@ -1,5 +1,5 @@
 {
-  "name": "Subtle Subtitles",
+  "name": "subtleSubtitles",
   "dependencies": {
     "grunt": "0.4.2",
     "grunt-contrib-concat": "0.3.0",
