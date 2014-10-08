@@ -5,18 +5,16 @@ module.exports = function(grunt) {
             js: {
                 src: [
                     'bower_components/jquery/dist/jquery.min.js',
+                    'bower_components/jquery-ui/ui/jquery-ui.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'static-src/js/app.js'
                 ],
                 dest: 'static/js/requirements.dist.js'
             },
             css: {
                 src: [
                     'bower_components/bootstrap/dist/css/bootstrap.min.css',
-                    'bower_components/font-awesome/css/font-awesome.min.css',
-                    'static-src-build/css/style.css'
                 ],
-                dest: 'static/css/style.dist.css'
+                dest: 'static/css/style.external.dist.css'
             }
         },
 
@@ -24,8 +22,12 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     // includes files within path
-                    {expand: true, flatten: true, src: ['bower_components/font-awesome/fonts/*'], dest: 'static/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['bower_components/jquery/dist/jquery.min.map'], dest: 'static/js/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['static-src-build/css/style.css'], dest: 'static/css/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['static-src/images/*'], dest: 'static/images/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['static-src/templates/*'], dest: 'static/templates/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['static-src/js/scripts/*.js'], dest: 'static/js/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['static-src/js/scripts/*.txt'], dest: 'static/js/', filter: 'isFile'},
                 ]
             }
         },

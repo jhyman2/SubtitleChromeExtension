@@ -3,15 +3,15 @@
     "version": "0",
     "description": "Subtle Subtitles will display subtitles at the bottom of any movie or TV show.",
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["static/js/background.js"],
         "persistent": false
     },
     "manifest_version": 2,
     "browser_action": {
         "name": "Manipulate DOM",
-        "icons": ["icon2.png"],
-        "default_icon": "icon2.png",
-        "default_popup": "popup.html"
+        "icons": ["static/images/icon2.png"],
+        "default_icon": "static/images/icon2.png",
+        "default_popup": "static/templates/popup.html"
     },
     "permissions": [
         "tabs", 
@@ -20,14 +20,13 @@
         "https://*/*"
     ],
     "content_scripts": [{
-        "js": ["jquery-1.11.0.min.js", "jquery-ui-1.10.4/ui/jquery-ui.js", "js/bootstrap.js"],
-        "css": ["customStyles.css"],
+        "js": ["static/js/requirements.dist.js"],
+        "css": ["static/css/style.css"],
         "matches": [ "http://*/*", "https://*/*"] 
     }],
     "web_accessible_resources": [
-        "sample.txt",
-        "images/sample.jpg",
-        "http://tutorrow.com/subtle_subtitles/example2.srt",
-        "js/bootstrap.js"
+        "static/js/sample.txt",
+        "static/images/sample.jpg",
+        "http://tutorrow.com/subtle_subtitles/example2.srt"
     ]
 }

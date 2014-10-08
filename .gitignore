@@ -1,8 +1,16 @@
+################
+## Front End
+################
+
+node_modules/
+bower_components/
+.sass-cache/
+static-src-build/
+
+
 #################
 ## Eclipse
 #################
-
-node_modules/*
 
 *.pydevproject
 .project

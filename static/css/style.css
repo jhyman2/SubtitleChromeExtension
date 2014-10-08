@@ -1,0 +1,11 @@
+.draggableResizable {
+  width: 800px;
+  height: 50px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: white;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 300%; }
+
+/*# sourceMappingURL=style.css.map */
