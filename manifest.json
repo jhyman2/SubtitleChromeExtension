@@ -10,7 +10,8 @@
     "browser_action": {
         "name": "Manipulate DOM",
         "icons": ["icon2.png"],
-        "default_icon": "icon2.png"
+        "default_icon": "icon2.png",
+        "default_popup": "popup.html"
     },
     "permissions": [
         "tabs", 
