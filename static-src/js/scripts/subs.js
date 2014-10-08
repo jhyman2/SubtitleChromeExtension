@@ -80,8 +80,9 @@ function startSubs () {
     function buildSubtitle() {
         var i;
         var subtitle = "";
-        for (i  = 0; i < subsShowing.length; i++) {
-            subtitle += (i > 0 && "<br>" || "") + finalSubs[subsShowing[i]].subText;;
+        var subSize = subsShowing.length;
+        for (i = subSize - 1; i >= 0; i--) {
+            subtitle += (i !== (subSize - 1)  && "<br>" || "") + finalSubs[subsShowing[i]].subText;
         }
         return subtitle;
     }
