@@ -8,5 +8,5 @@
     "grunt-contrib-copy": "0.5.0"
   },
   "main": "Gruntfile.js",
-  "author": "Jamison Hyman, Seth Mosgin, Joseph Khan"
+  "author": "Jamison Hyman, Seth Mosgin, Joseph Kahn"
 }
