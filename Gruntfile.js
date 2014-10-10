@@ -7,9 +7,9 @@ module.exports = function(grunt) {
                     'bower_components/jquery/dist/jquery.min.js',
                     'bower_components/jquery-ui/ui/jquery-ui.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'bower_components/backbone/backbone.js',
                     'bower_components/requirejs/require.js',
-                    'bower_components/underscore/underscore-min.js'
+                    'bower_components/underscore/underscore-min.js',
+                    'bower_components/backbone/backbone.js'
                 ],
                 dest: 'static/js/requirements.dist.js'
             },
