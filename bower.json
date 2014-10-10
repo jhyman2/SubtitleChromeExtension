@@ -3,6 +3,9 @@
   "dependencies": {
     "bootstrap": "3.2.0",
     "jquery-ui": "1.10.4",
-    "jquery": "2.1.1"
+    "jquery": "2.1.1",
+    "backbone": null,
+    "underscore": null,
+    "requirejs": null
   }
 }
