@@ -1,4 +1,7 @@
 (function() {
+    if ($('#subtle-subtitle').length > 0) {
+        return;
+    }
     // Reads in text file and console logs it
     var finalSubs = [];
     var beenClicked = false;
@@ -50,7 +53,7 @@
     });
 
     //create an element
-    var $element = $('<div id="text" class="draggableResizable" style="z-index: 2147483647; position:absolute; float:left; top:150px; left:150px;" />').text("Click me to start your subtitles");
+    var $element = $('<div id="subtle-subtitle" class="draggableResizable" style="z-index: 2147483647; position:absolute; float:left; top:150px; left:150px;" />').text("Click me to start your subtitles");
 
     //make it "draggable" and "resizable"
     $element.draggable();
@@ -63,18 +66,20 @@
     function showSubtitle(index) {
         subsShowing.push(index);
         currentSub = finalSubs[index];
-        document.getElementById("text").innerHTML = buildSubtitle();
+        $element.innerHTML = buildSubtitle();
         window.setTimeout(function(){eraseThisSubtitle(index);}, currentSub.endTime - currentSub.startTime);
         // Spawn the next one if it starts before we end.
         if (index + 1 < finalSubs.length) {
             nextSub = finalSubs[index + 1];
             window.setTimeout(function(){showSubtitle(index + 1);}, nextSub.startTime - currentSub.startTime);
+        } else {
+            $('#subtle-subtitle').remove();
         }
     }
 
     function eraseThisSubtitle(index) {
         subsShowing.splice(subsShowing.indexOf(index), 1);
-        document.getElementById("text").innerHTML = buildSubtitle();
+        $element.innerHTML = buildSubtitle();
     }
 
     function buildSubtitle() {
@@ -89,16 +94,15 @@
 
 
     $(document).ready(function(){
-        $("#text").click(function(){
-
+        $("#subtle-subtitle").on('click', function(){
             // checks to make sure subtitles havent started
             if (!beenClicked){
-
+                $element = $(this)[0];
                 beenClicked = true;
                 // Set subtitle text to blank before first one is called
-                document.getElementById("text").innerHTML = "waiting for first subtitle";
+                $element.innerHTML = "waiting for first subtitle";
                 //console.time("subtitles");
-                window.setTimeout(function(){document.getElementById("text").innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
+                window.setTimeout(function(){$element.innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
             }
         });
     });

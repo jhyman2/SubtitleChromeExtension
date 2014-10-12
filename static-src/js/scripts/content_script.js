@@ -5,10 +5,7 @@ define(["backbone"], function(Backbone) {
         initialize: function(){
 
             function startSubs () {
-                if (!this.beenClicked) {
-                    this.beenClicked = true;
-                    doInCurrentTab( function(tab){ console.log('all the buttons');chrome.tabs.executeScript(tab.id, { file: 'static/js/subs.js' }); } );
-                }
+                doInCurrentTab( function(tab){ console.log('all the buttons');chrome.tabs.executeScript(tab.id, { file: 'static/js/subs.js' }); } );
             }
 
             function doInCurrentTab(tabCallback) {
@@ -19,7 +16,6 @@ define(["backbone"], function(Backbone) {
             }
 
             $( document ).ready(function() {
-                this.beenClicked = false;
                 $('#start-subtitles').click(startSubs);
             });
         }
