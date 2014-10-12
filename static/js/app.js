@@ -13,6 +13,5 @@ requirejs.config({
 // your application logic in there.
 requirejs(['../js/content_script.js'], function(app) {
     var newApp = new app();
-    //newApp.initialize();
 });
 
