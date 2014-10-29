@@ -28,6 +28,7 @@
         "static/js/sample.txt",
         "static/images/sample.jpg",
         "static/js/jquery.min.map",
+        "static/js/underscore-min.map",
         "http://tutorrow.com/subtle_subtitles/example2.srt"
     ]
 }

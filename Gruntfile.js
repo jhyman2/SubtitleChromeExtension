@@ -7,9 +7,8 @@ module.exports = function(grunt) {
                     'bower_components/jquery/dist/jquery.min.js',
                     'bower_components/jquery-ui/ui/jquery-ui.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'bower_components/backbone/backbone.js',
-                    'bower_components/requirejs/require.js',
-                    'bower_components/underscore/underscore-min.js'
+                    'bower_components/underscore/underscore-min.js',
+                    'bower_components/backbone/backbone.js'
                 ],
                 dest: 'static/js/requirements.dist.js'
             },
@@ -26,6 +25,7 @@ module.exports = function(grunt) {
                 files: [
                     // includes files within path
                     {expand: true, flatten: true, src: ['bower_components/jquery/dist/jquery.min.map'], dest: 'static/js/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['bower_components/requirejs/require.js'], dest: 'static/js/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['static-src-build/css/style.css'], dest: 'static/css/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['static-src/images/*'], dest: 'static/images/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['static-src/templates/*'], dest: 'static/templates/', filter: 'isFile'},
