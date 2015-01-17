@@ -8,3 +8,5 @@ Instructions for frontend build process.
 2. gem install sass
 3. In the directory: `npm install` `bower install` and then `grunt`.
 4. Make all changes in the static-src folder and be sure to call `
+
+-- Testing slack integration
