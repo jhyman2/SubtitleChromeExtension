@@ -101,8 +101,12 @@
                 beenClicked = true;
                 // Set subtitle text to blank before first one is called
                 $element.innerHTML = "waiting for first subtitle";
-                //console.time("subtitles");
-                window.setTimeout(function(){$element.innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
+
+                if (finalSubs[0]) {
+                    window.setTimeout(function(){$element.innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
+                } else {
+                    console.log("Cannot grab subs");
+                }
             }
         });
     });
