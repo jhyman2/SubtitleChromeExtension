@@ -105,7 +105,7 @@
                 if (finalSubs[0]) {
                     window.setTimeout(function(){$element.innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
                 } else {
-                    console.log("Cannot grab subs");
+                    $element.innerHTML = "Cannot find subtitles. Check console for reason.";
                 }
             }
         });

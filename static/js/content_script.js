@@ -14,9 +14,11 @@ define(["backbone"], function(Backbone) {
             function fileUpload () {
                 doInCurrentTab( function(tab){ 
                     chrome.tabs.executeScript(tab.id, function() {
+                        // WHY WONT THIS LOGGGGGG
                         console.log('You wat m8');
+                        //  $("ul#upload-subtitles").dropzone({ url: "/file/post" });
+
                     });
-//                    $("ul#upload-subtitles").dropzone({ url: "/file/post" });
                 })
             }
 
