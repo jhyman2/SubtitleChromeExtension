@@ -82,21 +82,78 @@ var OpenSubtitlesHash = function(file, onComplete){
     
 };
 
-var firstChunk;
+var firstChunk, contentLength, lastChunk,
+    lastChunkRange = 'bytes=',
+    url = 'http://fs3.vodlocker.com:8777/kccebbuons4pcnokakichme5wh3evexajmq3rfg2cqauzikm5ay2x7ugbm/v.mp4';
 
-var headers = {
-    url: 'http://fs3.vodlocker.com:8777/kccebbuons4pcnokakichme5wh3evexajmq3rfg2cqauy5d4jf2r7dkize/v.mp4',
-    headers: {
-        'Accept-Ranges': 'bytes',
-        'Content-Range': 'bytes 0-1233/1234',
-        'ETag': 'file.ext_1234_1234567890',
-        'Range': 'bytes=0-99'
-    }
+
+var getHeadInfo = function(){
+
+    var headers = {
+        url: url,
+        headers: {
+            'Accept-Ranges': 'bytes',
+            'ETag': 'file.ext_1234_1234567890'
+        }
+    };
+
+    Request.head(headers, function (error, response, body){
+        contentLength = response.headers["content-length"];
+        lastChunkRange += (parseInt(contentLength, 10) - 65536 - 1).toString(); // not sure about - 1, think it's necessary
+        lastChunkRange += "-" + (parseInt(contentLength, 10) - 1).toString();
+        console.log("Content-Length: ", contentLength);
+        getFirstChunk();
+    });
+
 };
 
-Request.get(headers, function (error, response, body) {
-    firstChunk = body;
-});
+var getFirstChunk = function(){
+
+    var headers = {
+        url: url,
+        headers: {
+            'Accept-Ranges': 'bytes',
+            'Content-Range': 'bytes 0-1233/1234',
+            'ETag': 'file.ext_1234_1234567890',
+            'Range': 'bytes=0-65535'
+        }
+    };
+
+    // to debug, try getting file on disk and doing same thing
+    Request.get(headers, function (error, response, body) {
+        console.log("Should be 65536 length: ", body.length);
+        firstChunk = body;
+        getSecondChunk();
+    });
+};
+
+var getSecondChunk = function(){
+
+    var headers = {
+        url: url,
+        headers: {
+            'Accept-Ranges': 'bytes',
+            'Content-Range': 'bytes 0-1233/1234',
+            'ETag': 'file.ext_1234_1234567890',
+            'Range': lastChunkRange
+        }
+    };
+    console.log('Range', lastChunkRange);
+    Request.get(headers, function (error, response, body) {
+        console.log("Should be 65536 length: ", body.length);
+        lastChunk = body;
+    });
+
+};
+
+getHeadInfo();
+
+
+
+
+
+// SOME OPEN SUBTITLES STUFF BELOW
+
 
 // OpenSubtitlesHash('http://fs3.vodlocker.com:8777/kccebbuons4pcnokakichme5wh3evexajmq3rfg2cqauy5d4jf2r7dkize/v.mp4', function(sum){
 //     console.log('sum', sum);
