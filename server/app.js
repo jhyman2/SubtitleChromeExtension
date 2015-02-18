@@ -6,11 +6,11 @@
  * @param {File} file - a File obj contained on a DataTransfer
  * @param {Function} onComplete - the result callback
  */
-
 var Long = require('long');
 var FileReader = require('filereader');
 var Request = require('request');
 var http = require('http');
+var fs = require('fs');
 
 var OpenSubtitlesHash = function(file, onComplete){
 
@@ -146,8 +146,11 @@ var getSecondChunk = function(){
 
 };
 
-getHeadInfo();
-
+//getHeadInfo();
+fs.readFile( __dirname + '/../../../Downloads/walkdead10.mp4', function(err, data){
+    OpenSubtitlesHash(data, function(data2) {
+    });
+});
 
 
 
