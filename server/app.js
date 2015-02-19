@@ -148,6 +148,7 @@ var getSecondChunk = function(){
 
 //getHeadInfo();
 fs.readFile( __dirname + '/../../../Downloads/walkdead10.mp4', function(err, data){
+    console.log(data);
     OpenSubtitlesHash(data, function(data2) {
     });
 });
