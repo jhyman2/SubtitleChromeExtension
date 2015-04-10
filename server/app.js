@@ -8,9 +8,12 @@
  */
 var Long = require('long');
 var FileReader = require('filereader');
+var Blob = require('blob');
 var Request = require('request');
 var http = require('http');
 var fs = require('fs');
+var OS = require('node-opensubtitles-api');
+var os = new OS();
 
 var OpenSubtitlesHash = function(file, onComplete){
 
@@ -84,7 +87,7 @@ var OpenSubtitlesHash = function(file, onComplete){
 
 var firstChunk, contentLength, lastChunk,
     lastChunkRange = 'bytes=',
-    url = 'http://fs3.vodlocker.com:8777/kccebbuons4pcnokakichme5wh3evexajmq3rfg2cqauzikm5ay2x7ugbm/v.mp4';
+    url = 'http://fs3.vodlocker.com:8777/kccebbuons4pcnokakichme5wh3evexajmq3rfg2cqauy5d4jf25fxcjze/v.mp4';
 
 
 var getHeadInfo = function(){
@@ -148,11 +151,40 @@ var getSecondChunk = function(){
 
 //getHeadInfo();
 fs.readFile( __dirname + '/../../../Downloads/walkdead10.mp4', function(err, data){
-    console.log(data);
+    console.log(typeof data);
+
+    // var dataView = new Uint8Array(data);
+    // var dataBlob = new Blob([dataView]);
+        // var ab = new ArrayBuffer(data.length);
+        // var view = new Uint8Array(ab);
+        // for (var i = 0; i < data.length; ++i) {
+        //     view[i] = data[i];
+        // }
+
     OpenSubtitlesHash(data, function(data2) {
+        console.log('lol');
     });
 });
 
+
+/*
+* Using the opensubtitles API library, this works and gets the hash
+*/
+// os.computeHash(__dirname + '/../../../Downloads/walkdead10.mp4', function(err, size){
+//     if (err) {
+//         console.log("err", err);
+//         return;
+//     }
+
+//     os.checkMovieHash([size], function(err, res) {
+//         if(err) {
+//             console.log("err", err);
+//             return;
+//         }
+
+//         console.log("RES", res);
+//     })
+// });
 
 
 

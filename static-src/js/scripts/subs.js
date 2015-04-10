@@ -106,7 +106,7 @@
                 if (finalSubs[0]) {
                     window.setTimeout(function(){$element.innerHTML = ""; showSubtitle(0);}, finalSubs[0].startTime);
                 } else {
-                    $element.innerHTML = "Cannot find subtitles. Check console for reason.";
+                    $element.innerHTML = "Cannot find subtitles.  Errors in console.";
                 }
             }
         });
